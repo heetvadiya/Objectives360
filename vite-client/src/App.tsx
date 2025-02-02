@@ -17,8 +17,7 @@ function App() {
   const [objectives, setObjectives] = useState<ObjectiveType[]>([]);
 
   function handleAddKeyResult() {
-    const newKeyResult = initialKeyResult
-    setKeyResults([...keyResults, newKeyResult])
+    setKeyResults([...keyResults, initialKeyResult])
   }
 
   function handleDeleteKeyResults(index: number) {
@@ -41,12 +40,13 @@ function App() {
     }
     setObjectives([...objectives, newObjective])
     setObjectiveTitle("")
+    setKeyResults([initialKeyResult])
   }
 
   return (
     <>
-      <div className="mx-4 my-8 flex justify-center">
-        <div className="bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-lg">
+      <div className="mx-4 my-8 flex justify-center space-x-4">
+        <div className="w-1/2 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-lg">
 
           <div className="flex flex-col space-y-4">
             <div className="text-3xl font-serif font-medium text-black-200 font-semibold self-center">
@@ -76,7 +76,7 @@ function App() {
 
               {
                 keyResults.map((keyResult, index) => (
-                  <div className='bg-blue-100 rounded-md px-4 py-8 space-y-2' key={index}>
+                  <div className='bg-gray-200 rounded-md px-4 py-8 space-y-2' key={index}>
                     <label htmlFor="keyresult-title-input" className="font-serif">New Key Result Title</label>
                     <input
                       className="w-full px-1 py-2 border font-serif border-blue-400 focus:border-none rounded-md focus:outline-0 focus:ring-blue-500 focus:ring-1"
@@ -176,15 +176,15 @@ function App() {
         {
           objectives.length > 0 ? (
               <div
-                className="bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                className="w-1/2 flex-wrap bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
                 {
                   objectives.map((objective, obindex) => (
                     <div key={obindex}
-                         className="bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                         className="bg-blue-100 space-y-2 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
                       <h1>{objective.objectiveTitle}</h1>
                       {objective.keyResults.map((kresult, krindex) => (
                         <div key={krindex}
-                             className="bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                             className="bg-blue-50 space-y-2 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
                           <h2>{kresult.title}</h2>
                           <h2>{kresult.initialValue}</h2>
                           <h2>{kresult.currentValue}</h2>
@@ -200,8 +200,8 @@ function App() {
             :
             (
               <div
-                className="bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
-                <p>Sorry :(</p>
+                className="w-1/2 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                <div className='text-lg font-bold font-serif'>Sorry :(</div>
               </div>
             )
         }
