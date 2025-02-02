@@ -76,7 +76,7 @@ function App() {
 
               {
                 keyResults.map((keyResult, index) => (
-                  <div className='bg-gray-200 rounded-md px-4 py-8 space-y-2' key={index}>
+                  <div className='bg-gray-100 border-gray-200 border-2 rounded-md px-4 py-8 space-y-2' key={index}>
                     <label htmlFor="keyresult-title-input" className="font-serif">New Key Result Title</label>
                     <input
                       className="w-full px-1 py-2 border font-serif border-blue-400 focus:border-none rounded-md focus:outline-0 focus:ring-blue-500 focus:ring-1"
@@ -176,7 +176,7 @@ function App() {
         {
           objectives.length > 0 ? (
               <div
-                className="w-1/2 flex-wrap bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                className="w-1/2 flex-wrap space-y-4 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
                 {
                   objectives.map((objective, obindex) => (
                     <div key={obindex}
