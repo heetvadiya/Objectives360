@@ -43,6 +43,11 @@ function App() {
     setKeyResults([initialKeyResult])
   }
 
+  function handleDeleteObjective(index: number) {
+    objectives.splice(index, 1);
+    setObjectives([...objectives]);
+  }
+
   return (
     <>
       <div className="mx-4 my-8 flex justify-center space-x-4">
@@ -76,7 +81,8 @@ function App() {
 
               {
                 keyResults.map((keyResult, index) => (
-                  <div className='bg-gray-100 border-gray-200 border-2 rounded-md px-4 py-8 space-y-2' key={index}>
+                  <div className='bg-gray-100 shadow-md border-gray-200 border-2 rounded-md px-4 py-8 space-y-2'
+                       key={index}>
                     <label htmlFor="keyresult-title-input" className="font-serif">New Key Result Title</label>
                     <input
                       className="w-full px-1 py-2 border font-serif border-blue-400 focus:border-none rounded-md focus:outline-0 focus:ring-blue-500 focus:ring-1"
@@ -142,7 +148,7 @@ function App() {
                           }}/>
                       </div>
                       <button
-                        className="bg-red-400 px-1 py-2 rounded-md text-white text-lg hover:bg-red-500 border-none font-serif w-1/4"
+                        className="bg-red-400 shadow-md px-1 py-2 rounded-md text-white text-lg hover:bg-red-500 border-none font-serif w-1/4"
                         onClick={() => {
                           handleDeleteKeyResults(index)
                         }}>
@@ -156,14 +162,14 @@ function App() {
 
               <div className="flex justify-between">
                 <button
-                  className="bg-green-400 px-1 py-2 rounded-md text-white text-lg hover:bg-green-500 border-none font-serif w-1/4"
+                  className="bg-green-400 shadow-md px-1 py-2 rounded-md text-white text-lg hover:bg-green-500 border-none font-serif w-1/4"
                   onClick={() => {
                     handleAddObjective()
                   }}>
                   Add Objective
                 </button>
                 <button
-                  className="bg-blue-400 px-1 py-2 rounded-md text-white text-lg hover:bg-blue-500 border-none font-serif w-1/4"
+                  className="bg-blue-400 shadow-md px-1 py-2 rounded-md text-white text-lg hover:bg-blue-500 border-none font-serif w-1/4"
                   onClick={() => {
                     handleAddKeyResult()
                   }}>
@@ -176,20 +182,29 @@ function App() {
         {
           objectives.length > 0 ? (
               <div
-                className="w-1/2 flex-wrap space-y-4 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                className="w-1/2 flex-wrap space-y-4 space-x-2 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-md">
                 {
-                  objectives.map((objective, obindex) => (
-                    <div key={obindex}
-                         className="bg-blue-100 space-y-2 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
-                      <h1>{objective.objectiveTitle}</h1>
-                      {objective.keyResults.map((kresult, krindex) => (
-                        <div key={krindex}
-                             className="bg-blue-50 space-y-2 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
-                          <h2>{kresult.title}</h2>
-                          <h2>{kresult.initialValue}</h2>
-                          <h2>{kresult.currentValue}</h2>
-                          <h2>{kresult.targetValue}</h2>
-                          <h2>{kresult.metrics}</h2>
+                  objectives.map((iobjective, objectiveIndex) => (
+                    <div key={objectiveIndex}
+                         className="w-1/3 bg-blue-100 space-y-2 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-md">
+                      <div className="flex justify-between">
+                        <h1>{iobjective.objectiveTitle}</h1>
+                        <button
+                          className="bg-red-400 shadow-md px-1 py-2 rounded-md text-white text-xs hover:bg-red-500 border-none font-serif w-1/4"
+                          onClick={() => {
+                            handleDeleteObjective(objectiveIndex)
+                          }}>
+                          Delete
+                        </button>
+                      </div>
+                      {iobjective.keyResults.map((ikeyResult, keyResultIndex) => (
+                        <div key={keyResultIndex}
+                             className="bg-blue-50 space-y-2 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-md">
+                          <h2>{ikeyResult.title}</h2>
+                          <h2>{ikeyResult.initialValue}</h2>
+                          <h2>{ikeyResult.currentValue}</h2>
+                          <h2>{ikeyResult.targetValue}</h2>
+                          <h2>{ikeyResult.metrics}</h2>
                         </div>
                       ))}
                     </div>
@@ -200,7 +215,7 @@ function App() {
             :
             (
               <div
-                className="w-1/2 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex-col justify-center shadow-lg">
+                className="w-1/2 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-lg">
                 <div className='text-lg font-bold font-serif'>Sorry :(</div>
               </div>
             )
