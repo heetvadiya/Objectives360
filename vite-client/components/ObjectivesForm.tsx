@@ -2,8 +2,6 @@ import {KeyResultType, ObjectiveType} from "../src/okr-types";
 import {useState} from "react";
 
 type ObjectivesFormProps = {
-  objectiveTitle: string,
-  setObjectiveTitle: React.Dispatch<React.SetStateAction<string>>,
   objectives: ObjectiveType[]
   setObjectives: React.Dispatch<React.SetStateAction<ObjectiveType[]>>
 }
@@ -17,13 +15,12 @@ let initialKeyResult: KeyResultType = {
 }
 
 export default function ObjectivesForm({
-                                         objectiveTitle,
-                                         setObjectiveTitle,
                                          objectives,
                                          setObjectives
                                        }: ObjectivesFormProps) {
 
   const [keyResults, setKeyResults] = useState<KeyResultType[]>([initialKeyResult]);
+  const [objectiveTitle, setObjectiveTitle] = useState<string>("");
 
 
   function handleAddKeyResult() {
@@ -57,6 +54,13 @@ export default function ObjectivesForm({
     }
     setObjectives([...objectives, newObjective])
     setObjectiveTitle("")
+    initialKeyResult = {
+      title: "",
+      initialValue: 0,
+      currentValue: 0,
+      targetValue: 0,
+      metrics: "",
+    }
     setKeyResults([initialKeyResult])
   }
 
