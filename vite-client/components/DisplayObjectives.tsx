@@ -1,5 +1,6 @@
 import {ObjectiveType} from "../src/okr-types";
 import {FilePlus, Pencil, Trash} from "lucide-react";
+import AddKeyResultModal from "./AddKeyResultModal.tsx";
 import {useState} from "react";
 
 type DisplayObjectivesProps = {
@@ -10,11 +11,13 @@ type DisplayObjectivesProps = {
 export default function DisplayObjectives(
   {
     objectives,
-    setObjectives
+    setObjectives,
   }: DisplayObjectivesProps
 ) {
 
   const [showKeyResultModal, setShowKeyResultModal] = useState(false);
+
+
   function handleDeleteObjective(index: number) {
     objectives.splice(index, 1);
     setObjectives([...objectives]);
@@ -58,6 +61,10 @@ export default function DisplayObjectives(
                         }}>
                         <FilePlus></FilePlus>
                       </button>
+                      <AddKeyResultModal objectiveIndex={objectiveIndex}
+                                         setShowKeyResultModal={setShowKeyResultModal}
+                                         showKeyResultModal={showKeyResultModal} objectives={objectives}
+                                         setObjectives={setObjectives}/>
                       <button
                         className="flex justify-center bg-red-400 shadow-md px-1 py-2 rounded-full text-white text-xs hover:bg-red-500 border-none font-serif w-1/3 h-1/4"
                         onClick={() => {
