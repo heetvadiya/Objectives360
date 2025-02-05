@@ -27,15 +27,12 @@ export default function AddKeyResultModal(
   const [keyResult, setKeyResult] = useState<KeyResultType>(initialKeyResult)
 
   function handleAddKeyResult() {
-    //const selectedKeyResults = objectives[objectiveIndex].keyResults;
+    console.log("Before Setting ")
     console.log({objectives})
-    console.log(objectives[objectiveIndex])
-    //console.log({selectedKeyResults})
-
-    //setKeyResults([...selectedKeyResults, keyResult])
-    // selectedKeyResults.push(keyResult)
-    // console.log({selectedKeyResults})
+    objectives[objectiveIndex].keyResults.push(keyResult)
     setObjectives([...objectives])
+    setKeyResult({...initialKeyResult})
+    console.log("After Setting ")
     console.log({objectives})
     setShowKeyResultModal(false)
   }
@@ -44,7 +41,7 @@ export default function AddKeyResultModal(
     <>{
       showKeyResultModal
         ?
-        <div className="inset-0 fixed flex bg-opacity-15 justify-center items-center">
+        <div className="inset-0 fixed bg-gray-900/50 flex justify-center items-center">
           <div className='bg-gray-100 shadow-md border-gray-200 border-2 rounded-md px-4 py-8 space-y-2'>
             <label htmlFor="keyresult-title-input" className="font-serif">New Key Result Title</label>
             <input
