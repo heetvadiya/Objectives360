@@ -1,21 +1,18 @@
-import {ObjectiveType} from "../src/okr-types";
 import {FilePlus, Pencil, Trash} from "lucide-react";
 import AddKeyResultModal from "./AddKeyResultModal.tsx";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
 
 type DisplayObjectivesProps = {
-  objectives: ObjectiveType[],
-  setObjectives: React.Dispatch<React.SetStateAction<ObjectiveType[]>>
 }
 
 export default function DisplayObjectives(
   {
-    objectives,
-    setObjectives,
   }: DisplayObjectivesProps
 ) {
 
-  const [showKeyResultModal, setShowKeyResultModal] = useState(false);
+  const {objectives, setObjectives} = useContext(ObjectivesContext)
+  const [showKeyResultModal, setShowKeyResultModal] = useState<boolean>(false);
 
 
   function handleDeleteObjective(index: number) {
@@ -63,8 +60,7 @@ export default function DisplayObjectives(
                       </button>
                       <AddKeyResultModal objectiveIndex={objectiveIndex}
                                          setShowKeyResultModal={setShowKeyResultModal}
-                                         showKeyResultModal={showKeyResultModal} objectives={objectives}
-                                         setObjectives={setObjectives}/>
+                                         showKeyResultModal={showKeyResultModal}/>
                       <button
                         className="flex justify-center bg-red-400 shadow-md px-1 py-2 rounded-full text-white text-xs hover:bg-red-500 border-none font-serif w-1/3 h-1/4"
                         onClick={() => {

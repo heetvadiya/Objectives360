@@ -1,5 +1,6 @@
-import {useState} from "react";
-import {KeyResultType, ObjectiveType} from "../src/okr-types.ts";
+import {useContext, useState} from "react";
+import {KeyResultType} from "../src/okr-types.ts";
+import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
 
 const initialKeyResult: KeyResultType = {
   title: "",
@@ -10,20 +11,17 @@ const initialKeyResult: KeyResultType = {
 }
 type AddKeyResultModalProps = {
   objectiveIndex: number,
-  objectives: ObjectiveType[],
-  setObjectives: React.Dispatch<React.SetStateAction<ObjectiveType[]>>,
   showKeyResultModal: boolean,
   setShowKeyResultModal: React.Dispatch<React.SetStateAction<boolean>>
 }
 export default function AddKeyResultModal(
   {
     objectiveIndex,
-    objectives,
-    setObjectives,
     showKeyResultModal,
     setShowKeyResultModal
   }: AddKeyResultModalProps) {
 
+  const {objectives, setObjectives} = useContext(ObjectivesContext)
   const [keyResult, setKeyResult] = useState<KeyResultType>(initialKeyResult)
 
   function handleAddKeyResult() {

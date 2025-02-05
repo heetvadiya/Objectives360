@@ -1,9 +1,8 @@
 import {KeyResultType, ObjectiveType} from "../src/okr-types";
-import {useState} from "react";
+import {useContext, useState} from "react";
+import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
 
 type ObjectivesFormProps = {
-  objectives: ObjectiveType[]
-  setObjectives: React.Dispatch<React.SetStateAction<ObjectiveType[]>>
 }
 
 const initialKeyResult: KeyResultType = {
@@ -15,10 +14,9 @@ const initialKeyResult: KeyResultType = {
 }
 
 export default function ObjectivesForm({
-                                         objectives,
-                                         setObjectives
                                        }: ObjectivesFormProps) {
 
+  const {objectives, setObjectives} = useContext(ObjectivesContext)
   const [keyResults, setKeyResults] = useState<KeyResultType[]>([{...initialKeyResult}]);
   const [objectiveTitle, setObjectiveTitle] = useState<string>("");
 
