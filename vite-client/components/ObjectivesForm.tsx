@@ -6,12 +6,12 @@ type ObjectivesFormProps = {
   setObjectives: React.Dispatch<React.SetStateAction<ObjectiveType[]>>
 }
 
-let initialKeyResult: KeyResultType = {
-  title: "",
+const initialKeyResult: KeyResultType = {
+  title: '',
   initialValue: 0,
   currentValue: 0,
   targetValue: 0,
-  metrics: "",
+  metrics: '',
 }
 
 export default function ObjectivesForm({
@@ -19,19 +19,12 @@ export default function ObjectivesForm({
                                          setObjectives
                                        }: ObjectivesFormProps) {
 
-  const [keyResults, setKeyResults] = useState<KeyResultType[]>([initialKeyResult]);
+  const [keyResults, setKeyResults] = useState<KeyResultType[]>([{...initialKeyResult}]);
   const [objectiveTitle, setObjectiveTitle] = useState<string>("");
 
 
-  function handleAddKeyResult() {
-    initialKeyResult = {
-      title: "",
-      initialValue: 0,
-      currentValue: 0,
-      targetValue: 0,
-      metrics: "",
-    }
-    setKeyResults([...keyResults, initialKeyResult])
+  function handleAddNewKeyResult() {
+    setKeyResults([...keyResults, {...initialKeyResult}])
   }
 
   function handleDeleteKeyResults(index: number) {
@@ -52,21 +45,14 @@ export default function ObjectivesForm({
       objectiveTitle: objectiveTitle,
       keyResults: keyResults
     }
-    setObjectives([...objectives, newObjective])
+    setObjectives([...objectives, {...newObjective}])
     setObjectiveTitle("")
-    initialKeyResult = {
-      title: "",
-      initialValue: 0,
-      currentValue: 0,
-      targetValue: 0,
-      metrics: "",
-    }
-    setKeyResults([initialKeyResult])
+    setKeyResults([{...initialKeyResult}])
   }
 
   return (
     <>
-      <div className="w-1/2 bg-gray-50 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-lg">
+      <div className="w-1/2 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-md">
         <div className="flex flex-col space-y-4">
           <div className="text-3xl font-serif font-medium text-black-200 font-semibold self-center">
             <span>Create Objective</span>
@@ -91,8 +77,6 @@ export default function ObjectivesForm({
             <div className="text-xl font-serif font-medium text-black-200 font-semibold justify-self-center">
               <span>Add Key Results</span>
             </div>
-
-
             {
               keyResults.map((keyResult, index) => (
                 <div className='bg-gray-100 shadow-md border-gray-200 border-2 rounded-md px-4 py-8 space-y-2'
@@ -184,7 +168,7 @@ export default function ObjectivesForm({
               <button
                 className="bg-blue-400 shadow-md px-1 py-2 rounded-md text-white text-lg hover:bg-blue-500 border-none font-serif w-1/4"
                 onClick={() => {
-                  handleAddKeyResult()
+                  handleAddNewKeyResult()
                 }}>
                 Add Key Result
               </button>
