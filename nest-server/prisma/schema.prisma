@@ -8,9 +8,9 @@ datasource db {
 }
 
 model Objectives {
-  id         String       @id @default(uuid())
-  objective  String
-  keyResults KeyResults[]
+  id             String       @id @default(uuid())
+  objectiveTitle String
+  keyResults     KeyResults[]
 }
 
 model KeyResults {
