@@ -2,7 +2,7 @@ import {FilePlus, Pencil, Trash} from "lucide-react";
 import AddKeyResultModal from "./AddKeyResultModal.tsx";
 import {useContext, useEffect, useState} from "react";
 import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
-import {getObjectives} from "../database/okr-db-service.ts";
+import {getObjectives} from "../database/okrStore.ts";
 
 type DisplayObjectivesProps = {}
 
