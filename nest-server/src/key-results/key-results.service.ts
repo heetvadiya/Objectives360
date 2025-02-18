@@ -25,7 +25,7 @@ export class KeyResultsService {
     });
   }
 
-  patch(id: string, keyResult: UpdateKeyResultDto) {
+  update(id: string, keyResult: UpdateKeyResultDto) {
     return this.prismaService.keyResults.update({
       where: {
         id: id
