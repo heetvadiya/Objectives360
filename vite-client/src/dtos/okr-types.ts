@@ -11,4 +11,8 @@ type ObjectiveType = {
   keyResults: KeyResultType[];
 }
 
-export type {ObjectiveType, KeyResultType}
+type CreateObjectiveDto = {
+  objectiveTitle: string
+}
+
+export type {ObjectiveType, KeyResultType, CreateObjectiveDto}

@@ -1,5 +1,5 @@
 import {createContext, ReactElement, useState} from "react";
-import {ObjectiveType} from "../src/okr-types";
+import {ObjectiveType} from "../dtos/okr-types.ts";
 
 
 type ObjectivesContextType = {

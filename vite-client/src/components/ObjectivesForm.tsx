@@ -1,4 +1,4 @@
-import {KeyResultType, ObjectiveType} from "../src/okr-types";
+import {KeyResultType, ObjectiveType} from "../dtos/okr-types.ts";
 import {useContext, useState} from "react";
 import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
 

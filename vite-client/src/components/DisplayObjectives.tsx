@@ -1,18 +1,26 @@
 import {FilePlus, Pencil, Trash} from "lucide-react";
 import AddKeyResultModal from "./AddKeyResultModal.tsx";
-import {useContext, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
+import {getObjectives} from "../database/okr-db-service.ts";
 
-type DisplayObjectivesProps = {
-}
+type DisplayObjectivesProps = {}
 
 export default function DisplayObjectives(
-  {
-  }: DisplayObjectivesProps
+  {}: DisplayObjectivesProps
 ) {
 
   const {objectives, setObjectives} = useContext(ObjectivesContext)
   const [showKeyResultModal, setShowKeyResultModal] = useState<boolean>(false);
+
+  const syncWithDatabase = async () => {
+    const fetchedObjectives = await getObjectives();
+    setObjectives([...fetchedObjectives]);
+  }
+
+  useEffect(() => {
+    syncWithDatabase();
+  }, []);
 
 
   function handleDeleteObjective(index: number) {
@@ -35,7 +43,7 @@ export default function DisplayObjectives(
   return (
     <>
       {
-        objectives.length > 0 ? (
+        objectives != null && objectives.length > 0 ? (
             <div
               className="w-1/2 flex-wrap space-y-4 space-x-2 border-2 border-gray-300 rounded-md py-8 px-4 flex justify-center shadow-md font-serif">
               {

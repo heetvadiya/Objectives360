@@ -1,5 +1,5 @@
 import {useContext, useState} from "react";
-import {KeyResultType} from "../src/okr-types.ts";
+import {KeyResultType} from "../dtos/okr-types.ts";
 import {ObjectivesContext} from "../context/ObjectivesProvider.tsx";
 
 const initialKeyResult: KeyResultType = {
@@ -9,6 +9,7 @@ const initialKeyResult: KeyResultType = {
   targetValue: 0,
   metrics: "",
 }
+
 type AddKeyResultModalProps = {
   objectiveIndex: number,
   showKeyResultModal: boolean,
