@@ -1,8 +1,8 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post, Query} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {KeyResultsService} from "./key-results.service";
 import {CreateKeyResultDto, UpdateKeyResultDto} from "./key-results.dto";
 
-@Controller('key-results')
+@Controller("keyresults")
 export class KeyResultsController {
 
   constructor(private readonly keyResultsService: KeyResultsService) {
@@ -19,8 +19,8 @@ export class KeyResultsController {
   }
 
   @Patch(":id")
-  patch(@Param('id') id: string, @Body() keyResultToUpdate: UpdateKeyResultDto) {
-    return this.keyResultsService.patch(id, keyResultToUpdate);
+  update(@Param('id') id: string, @Body() keyResultToUpdate: UpdateKeyResultDto) {
+    return this.keyResultsService.update(id, keyResultToUpdate);
   }
 
   @Delete(":id")

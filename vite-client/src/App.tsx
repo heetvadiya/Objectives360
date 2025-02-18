@@ -1,6 +1,6 @@
 import './App.css'
-import ObjectivesForm from "../components/ObjectivesForm.tsx";
-import DisplayObjectives from "../components/DisplayObjectives.tsx";
+import ObjectivesForm from "./components/ObjectivesForm.tsx";
+import DisplayObjectives from "./components/DisplayObjectives.tsx";
 
 function App() {
   return (

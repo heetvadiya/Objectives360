@@ -1,6 +1,6 @@
 import {Body, Controller, Delete, Get, Param, Patch, Post} from '@nestjs/common';
 import {ObjectivesService} from "./objectives.service";
-import {CreateObjectivesDto, UpdateObjectivesDto} from "./objectives.dto";
+import {CreateObjectiveDto, UpdateObjectiveDto} from "./objectives.dto";
 
 @Controller('objectives')
 export class ObjectivesController {
@@ -19,12 +19,12 @@ export class ObjectivesController {
   }
 
   @Post()
-  create(@Body() objectiveToCreate: CreateObjectivesDto) {
+  create(@Body() objectiveToCreate: CreateObjectiveDto) {
     return this.objectivesService.create(objectiveToCreate);
   }
 
   @Patch(":id")
-  update(@Param('id') id: string, @Body() objectiveToUpdate: UpdateObjectivesDto) {
+  update(@Param('id') id: string, @Body() objectiveToUpdate: UpdateObjectiveDto) {
     return this.objectivesService.update(id, objectiveToUpdate);
   }
 

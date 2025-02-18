@@ -1,7 +1,7 @@
-export class CreateObjectivesDto {
+export class CreateObjectiveDto {
   objectiveTitle: string
 }
 
-export class UpdateObjectivesDto {
+export class UpdateObjectiveDto {
   objectiveTitle: string
 }
