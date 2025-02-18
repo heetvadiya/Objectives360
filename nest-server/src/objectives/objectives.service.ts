@@ -1,6 +1,6 @@
 import {Injectable} from '@nestjs/common';
 import {PrismaService} from "../prisma/prisma.service";
-import {CreateObjectivesDto, UpdateObjectivesDto} from "./objectives.dto";
+import {CreateObjectiveDto, UpdateObjectiveDto} from "./objectives.dto";
 
 @Injectable()
 export class ObjectivesService {
@@ -9,7 +9,11 @@ export class ObjectivesService {
   }
 
   fetchAll() {
-    return this.prismaService.objectives.findMany();
+    return this.prismaService.objectives.findMany({
+      include: {
+        keyResults: true,
+      },
+    });
   }
 
   fetchWithId(id: string) {
@@ -18,13 +22,13 @@ export class ObjectivesService {
     });
   }
 
-  create(newObjective: CreateObjectivesDto) {
+  create(newObjective: CreateObjectiveDto) {
     return this.prismaService.objectives.create({
       data: newObjective
     })
   }
 
-  update(id: string, objectiveToUpdate: UpdateObjectivesDto) {
+  update(id: string, objectiveToUpdate: UpdateObjectiveDto) {
     return this.prismaService.objectives.update({
       where: {id: id},
       data: {objectiveTitle: objectiveToUpdate.objectiveTitle}
